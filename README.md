@@ -10,16 +10,16 @@ Obs: Este projeto faz parte do meu portfólio de ciência de dados e tem como ob
 
 Utilizei um conjunto de dados com informações de vendas semanais de suplementos, contendo dados como:
 
-"Date" = Data
-"Product Name" = Nome do produto 
-"Category" = Categoria do produto
-"Units Sold" = Unidades vendidas
-"Price" = Preço
-"Revenue" = Devolvidos
-"Discount" = Desconto
-"Units Returned" = Unidades devolvidas
-"Location" = Localização (USA, Canada ou UK)
-"Platform" = Plataformas de venda (iHerb, Amazon ou Walmart)
+- "Date" = Data
+- "Product Name" = Nome do produto 
+- "Category" = Categoria do produto
+- "Units Sold" = Unidades vendidas
+- "Price" = Preço
+- "Revenue" = Devolvidos
+- "Discount" = Desconto
+- "Units Returned" = Unidades devolvidas
+- "Location" = Localização (USA, Canada ou UK)
+- "Platform" = Plataformas de venda (iHerb, Amazon ou Walmart)
 
 Esses dados foram:
 
@@ -35,13 +35,3 @@ Esses dados foram:
 - PostgreSQL
 - VSCode
 - Git e GitHub
-
-
-
-
-## 🔍 Exemplos de Consultas Realizadas (em construção)
-
-
-
-
-
