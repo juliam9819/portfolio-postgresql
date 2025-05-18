@@ -1,28 +1,29 @@
---exibe a tabela--
+--Essa consulta exibe a tabela--
 SELECT * FROM sales;
 
+--Essa consulta exibe os nomes das coluna--
 SELECT column_name
 FROM information_schema.columns
 WHERE table_name = 'sales'
 ORDER BY ordinal_position;
 
---exibe as plataformas de vendas--
+--Essa consulta exibe as plataformas de vendas--
 SELECT DISTINCT "Platform"
 FROM sales;
 
---exibe os locais das vendas--
+--Essa consulta exibe os locais das vendas--
 SELECT DISTINCT "Location"
 FROM sales;
 
---exibe os produtos das vendas--
+--Essa consulta exibe os produtos das vendas--
 SELECT DISTINCT "Product Name"
 FROM sales;
 
---exibe o total de registros--
+--Essa consulta exibe o total de registros--
 SELECT COUNT(*) AS total_registros
 FROM sales;
 
---exibe o total da receita por categoria--
+--Essa consulta exibe o total da receita por categoria--
 SELECT 
     "Category", 
     SUM("Revenue") AS total_revenue
@@ -31,7 +32,7 @@ GROUP BY "Category"
 ORDER BY total_revenue DESC;
 
 
---exibe o total da receita por categoria--
+--Essa consulta exibe o total da receita por categoria--
 SELECT 
     "Product Name", 
     SUM("Revenue") AS total_revenue
@@ -40,7 +41,7 @@ GROUP BY "Product Name"
 ORDER BY total_revenue DESC;
 
 
---exibe o total de unidades devolvidas por categoria--
+--Essa consulta exibe o total de unidades devolvidas por categoria--
 SELECT 
     "Category", 
     SUM("Units Returned") AS total_returns
@@ -49,7 +50,7 @@ GROUP BY "Category"
 ORDER BY total_returns DESC;
 
 
---exibe a média de receita por categoria--
+--Essa consulta exibe a média de receita por categoria--
 SELECT 
     "Category", 
     AVG("Revenue") AS avg_revenue
@@ -59,13 +60,15 @@ ORDER BY avg_revenue DESC;
 
 
 
---Criando tabela holidays--
+--Essa consulta cria a tabela holidays--
 CREATE TABLE holidays (
     date DATE,
     country TEXT,
     holiday_name TEXT
 );
 
+
+--Essa consulta adiciona os feriados na tabela holidays--
                                                  --Estados Unidos--
 --2020--
 INSERT INTO holidays (date, country, holiday_name) VALUES ('2020-01-01', 'United States', 'New Year''s Day');
@@ -241,11 +244,11 @@ INSERT INTO holidays (date, country, holiday_name) VALUES ('2025-04-10', 'United
 INSERT INTO holidays (date, country, holiday_name) VALUES ('2025-04-13', 'United Kingdom', 'Easter Monday');
 
 
---exibe a tabela--
+--Essa consulta exibe a tabela--
 SELECT * FROM holidays;
 
 
-
+--Essa consulta cria tabela--
 CREATE TABLE dates AS
 SELECT DISTINCT 
     "Date"::date AS date,
@@ -255,18 +258,19 @@ SELECT DISTINCT
     FALSE AS is_holiday
 FROM sales;
 
---atualiza os feriados--
+--Essa consulta atualiza os feriados--
 UPDATE dates
 SET is_holiday = TRUE
 WHERE date IN (
     SELECT date FROM holidays
 );
 
---exibe a tabela--
+
+--Essa consulta exibe a tabela--
 SELECT * FROM dates;
 
 
---Receita média em dias normais vs feriados--
+--Nessa consulta calculo a receita média em dias normais vs feriados
 SELECT 
     d.is_holiday,
     ROUND(AVG(s."Revenue")::numeric, 2) AS avg_revenue
@@ -274,5 +278,29 @@ FROM sales s
 JOIN dates d 
     ON TO_DATE(s."Date", 'DD/MM/YYYY') = d.date
 GROUP BY d.is_holiday;
+
+
+
+
+
+--Nesta consulta, analiso o impacto de feriados nas vendas de uma empresa. 
+--Ao integrar a tabela de vendas com um calendário de feriados, classifico os dias como 'Feriado' ou 'Dia Normal' e calculo o total de vendas.
+SELECT
+  CASE
+    WHEN h.date IS NOT NULL THEN 'Feriado'
+    ELSE 'Dia Normal'
+  END AS tipo_dia,
+  COUNT(s."Date") AS total_vendas
+FROM
+  sales s
+LEFT JOIN
+  holidays h
+ON
+  TO_DATE(s."Date", 'DD/MM/YYYY') = h.date
+GROUP BY
+  tipo_dia
+ORDER BY
+  tipo_dia;
+
 
 
