@@ -31,7 +31,6 @@ Esses dados foram:
 
 ## 🔧 Tecnologias Utilizadas
 
-- Python (Pandas, SQLAlchemy, psycopg2)
+- Python (Pandas, Numpy, Torch, Sklearn.metrics, seaborn, SQLAlchemy, matplotlib)
 - PostgreSQL
 - VSCode
-- Git e GitHub
