@@ -1,4 +1,4 @@
-# 💊 Projeto de Análise de Vendas de Suplementos com PostgreSQL
+# 💊 Projeto de Análise de Vendas de Suplementos
 
 Este projeto tem como objetivo analisar dados de vendas de suplementos alimentares, utilizando a base de dados “Supplement Sales Data” disponível no Kaggle:[https://www.kaggle.com/datasets/zahidmughal2343/supplement-sales-data](https://www.kaggle.com/datasets/zahidmughal2343/supplement-sales-data).
 
